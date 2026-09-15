@@ -1,0 +1,3 @@
+Up-regulated genes: 360
+Down-regulated genes: 233
+Unchanged genes: 20896

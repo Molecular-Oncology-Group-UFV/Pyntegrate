@@ -1,0 +1,8 @@
+High:
+	 - Up-regulated genes: 0
+	 - Down-regulated genes: 0
+	 - Unchanged genes: 5929
+Low:
+	 - Up-regulated genes: 0
+	 - Down-regulated genes: 0
+	 - Unchanged genes: 2602
