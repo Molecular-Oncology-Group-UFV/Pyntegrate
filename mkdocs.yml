@@ -1,0 +1,103 @@
+site_name: Pyntegrate
+site_description: Integrative analysis of high-throughput sequencing data
+site_author: Gerardo Fructuoso
+site_url: https://github.com/SalvaaGomez/Pyntegrate
+use_directory_urls: False
+repo_name: SalvaaGomez/Pyntegrate
+repo_url: https://github.com/SalvaaGomez/Pyntegrate
+
+theme:
+  name: material
+  icon:
+    logo: material/dna
+    repo: fontawesome/brands/github
+  features:
+    - content.code.copy
+    - content.code.select
+    - content.tabs.link
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - navigation.sections
+    - navigation.footer
+    - navigation.indexes
+    - toc.follow
+    - search.suggest
+    - search.share
+    - search.highlight
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: red
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          options:
+            docstring_style: google
+            show_source: true
+            merge_init_into_class: true
+            heading_level: 2
+            members_order: source
+            show_if_no_docstring: false
+            show_docstring_examples: true
+            show_docstring_attributes: true
+            show_docstring_parameters: false
+            show_docstring_returns: false
+            show_docstring_raises: false
+            show_bases: true
+            filters:
+              - "!^_"
+              - "^__init__"
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - def_list
+  - footnotes
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.details
+  - pymdownx.arithmatex
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Getting Started: getting_started.md
+  - API Reference:
+    - Pipelines: api/pipelines.md
+    - SeqSignalAnalysis: api/seqsignalanalysis.md
+    - Genomic Signal: api/genomic_signal.md
+    - Results Table: api/results_table.md
+    - Helpers: api/helpers.md
+    - Array Helpers: api/array_helpers.md
+    - Colormap: api/colormap_adjust.md
+  - Examples: examples.md
