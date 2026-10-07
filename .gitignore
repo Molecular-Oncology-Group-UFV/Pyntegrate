@@ -1,0 +1,12 @@
+data
+.venv
+.vscode
+.bin
+.build
+site
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+*.mmr
