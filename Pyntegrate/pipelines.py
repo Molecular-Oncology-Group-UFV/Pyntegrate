@@ -70,6 +70,16 @@ class PeakHeatmapPipeline:
     the TSS of each annotated gene, computes the IP − INPUT subtracted
     signal, and produces four ready-to-display figures.
 
+    ## Normalization
+
+    `ip_path` and `input_path` are each normalized to CPM (counts per
+    million) *before* the IP − INPUT subtraction — every value is
+    divided by that file's own `mapped_read_count() / 1e6` (see
+    `BigWigSignal.mapped_read_count` in `_genomic_signal.py`). This is
+    applied unconditionally (`normalize_to_cpm=True`, hardcoded in
+    `run()`) and is **not** exposed as a constructor parameter here, so
+    it cannot be turned off without editing `PeakHeatmapPipeline.run()`.
+
     ## Attributes
 
     | Attribute | Type | Default | Description |
@@ -175,6 +185,15 @@ class CategoryHeatmapPipeline:
     CSV table, and produces three heatmap figures — unsorted,
     sorted by mean, and sorted by max-value index — with each category
     shown as a distinct coloured track.
+
+    ## Normalization
+
+    `signal_path` is normalized to CPM (counts per million) before the
+    heatmaps are built — every value is divided by
+    `mapped_read_count() / 1e6` (see `BigWigSignal.mapped_read_count`
+    in `_genomic_signal.py`). This is applied unconditionally
+    (`normalize_to_cpm=True`, hardcoded in `run()`) and is **not**
+    exposed as a constructor parameter here.
 
     ## Attributes
 
@@ -304,6 +323,17 @@ class OverlayProfilePipeline:
     extra ChIP signal (e.g. an input/control track) on top of the main
     profiles — each plotted once, on its own axis and with its own color
     and legend entry, independent of category filtering.
+
+    ## Normalization
+
+    `signal_1_path`, `signal_2_path`, and any `extra_signal_*_path`
+    provided are each normalized to CPM (counts per million)
+    independently before plotting — every signal is divided by its own
+    `mapped_read_count() / 1e6` (see `BigWigSignal.mapped_read_count`
+    in `_genomic_signal.py`). This is the default of
+    `generate_arrays_from_tsses_from_db` (`normalize_to_cpm=True`);
+    `run()` does not pass the argument explicitly, and it is **not**
+    exposed as a constructor parameter here.
 
     ## Attributes
 
@@ -622,6 +652,16 @@ class GeneGroupProfilePipeline:
     high/low thresholds applied to both columns, and the average signal is
     plotted as one line per quadrant on a single axis.
 
+    ## Normalization
+
+    `signal_path` is normalized to CPM (counts per million) before the
+    per-quadrant averages are plotted — every value is divided by
+    `mapped_read_count() / 1e6` (see `BigWigSignal.mapped_read_count`
+    in `_genomic_signal.py`). This is the default of
+    `generate_arrays_from_tsses_from_db` (`normalize_to_cpm=True`);
+    `run()` does not pass the argument explicitly, and it is **not**
+    exposed as a constructor parameter here.
+
     ## Attributes
 
     | Attribute | Type | Default | Description |
@@ -795,6 +835,16 @@ class IntegratedHeatmapPipeline:
     colour-coded by RNA expression status and padj values (up, down, unchanged). An
     optional category filter (e.g. FACT high/low) can further subset
     the gene list.
+
+    ## Normalization
+
+    `signal_path` is normalized to CPM (counts per million) before the
+    heatmap is built — every value is divided by
+    `mapped_read_count() / 1e6` (see `BigWigSignal.mapped_read_count`
+    in `_genomic_signal.py`). This is the default of
+    `generate_arrays_from_tsses_from_db` (`normalize_to_cpm=True`);
+    `run()` does not pass the argument explicitly, and it is **not**
+    exposed as a constructor parameter here.
 
     ## Attributes
 

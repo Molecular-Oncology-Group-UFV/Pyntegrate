@@ -331,7 +331,20 @@ class BigWigSignal(BaseSignal):
 
     def mapped_read_count(self, force=False):
         """
-        Count the total number of non-zero positions in the BigWig file.
+        Count the total number of bases covered by the BigWig file.
+
+        Uses pyBigWig's `header()['nBasesCovered']` — the number of
+        bases that have *any* interval defined in the file, regardless
+        of that interval's value. **This is not the same as the number
+        of bases with non-zero signal**: a BigWig that stores explicit
+        zero-value intervals (e.g. produced by `bamCoverage` without
+        skipping no-coverage regions) counts those bases too, which can
+        inflate the result up to the size of the whole genome.
+
+        This value is used as the denominator for CPM normalization
+        throughout `pipelines.py` (`value / (mapped_read_count() / 1e6)`)
+        — an inflated count here directly shrinks the normalized signal
+        the pipelines plot.
 
         The result is cached in `self._readcount` after the first call.
         If a `<file>.mmr` sidecar file exists, the count is read from
@@ -346,8 +359,8 @@ class BigWigSignal(BaseSignal):
 
         ## Returns
 
-        `int | None` — Total non-zero positions, or `None` if the file
-        cannot be opened.
+        `int | None` — Total bases covered (`nBasesCovered`), or `None`
+        if the file cannot be opened.
 
         ## Examples
 
@@ -356,12 +369,12 @@ class BigWigSignal(BaseSignal):
 
         sig = genomic_signal("chip.bw", "bigwig")
         n = sig.mapped_read_count()
-        print(f"Non-zero positions: {n:,}")
+        print(f"Bases covered: {n:,}")
         ```
 
         **Output:**
         ```
-        Non-zero positions: 15,243,600
+        Bases covered: 15,243,600
         ```
         """
         if self._readcount and not force:
