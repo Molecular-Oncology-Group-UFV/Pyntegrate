@@ -6,6 +6,7 @@ Pyntegrate works best inside an isolated Conda environment. Before installing, m
 
 | Requirement | Why |
 |---|---|
+| Python 3.9-3.12 | `numpy` 1.26 and `pybedtools` 0.9.1 do not build on Python 3.13+ (3.10 recommended) |
 | `conda` | Manages the Python environment and native dependencies (e.g. `bedtools`) |
 | Git | Needed to clone the repository or install directly from GitHub |
 | C/C++ build toolchain | Required to compile some scientific-Python dependencies |
@@ -32,80 +33,54 @@ Pyntegrate works best inside an isolated Conda environment. Before installing, m
 
 Pick the workflow that matches your setup. The setup script is the fastest path — it creates the environment, installs Pyntegrate, and takes care of `bedtools` for you in one command.
 
-=== ":material-rocket-launch: One-command script (recommended)"
+=== ":material-rocket-launch: One-command script"
 
-    The repository ships a helper script that creates a `venv`, installs Pyntegrate in editable mode from a local clone, and installs `bedtools` automatically (via `conda`, `apt-get`, or `brew`, whichever is available) — handy for development or for running the [`examples/`](https://github.com/SalvaaGomez/Pyntegrate/tree/main/examples) scripts:
+    The repository ships a helper script that creates a `venv`, installs Pyntegrate in editable mode from a local clone, and installs `bedtools` automatically (via `conda`, `apt-get`, or `brew`, whichever is available) — handy for development or for running the [`examples/`](https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate/tree/main/examples) scripts:
 
     ```bash
-    git clone https://github.com/SalvaaGomez/Pyntegrate.git
+    git clone https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate.git
     cd Pyntegrate
     ./setup_env.sh          # creates .venv/, installs Pyntegrate + bedtools
     # ./setup_env.sh /path/to/venv   # optional: custom venv location
+    # PYTHON=/usr/bin/python3.11 ./setup_env.sh   # optional: choose the interpreter
 
     source .venv/bin/activate
     ```
 
 === ":material-package-variant: Conda (manual)"
 
-    Creates a clean environment, installs the required runtime dependencies, and installs Pyntegrate from GitHub:
+    Creates a clean environment and installs Pyntegrate in editable mode from a local clone. Conda installs only what `pip` cannot (`bedtools`, `samtools`, and `pybedtools`, which often fails to compile under `pip`); `pip install -e .` then installs the remaining Python dependencies at the versions pinned in `requirements.txt`:
 
     ```bash
-    conda create --name pyntegrateTest python=3.10 -y
-    conda activate pyntegrate_final
+    conda create --name pyntegrate -c conda-forge -c bioconda \
+        python=3.10 bedtools samtools pybedtools=0.9.1 -y
+    conda activate pyntegrate
 
-    conda install -c conda-forge numpy=1.26.3 -y
-    conda install -c bioconda bedtools -y
-    conda install pandas -y
-    conda install openpyxl -y
-    conda install bioconda::samtools -y
-    conda install conda-forge::pycirclize -y
-
-    cd ~/pyntegrate
-    git clone git@github.com:SalvaaGomez/Pyntegrate.git
-    cd Pyntegrate/
+    git clone https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate.git
+    cd Pyntegrate
     pip install -e .
     ```
 
-=== ":material-cog: Plain venv (manual)"
+    !!! warning "Activate the environment you just created"
+        Make sure the name passed to `conda activate` matches the one used in `conda create`. Otherwise everything is installed into a different (possibly older) environment.
 
-    Uses Python's built-in `venv` instead of Conda. `bedtools` is not available via `pip`, so install it separately with your system package manager:
-
-    ```bash
-    python3 -m venv .venv
-    source .venv/bin/activate
-
-    pip install --upgrade pip
-    pip install git+https://github.com/SalvaaGomez/Pyntegrate.git
-
-    sudo apt-get install bedtools  # or your platform's equivalent
-    ```
 
 ## Install from a local copy
 
 === "From a ZIP download"
 
     ```bash
-    conda create --name pyntegrateTest python=3.10 -y
-    conda activate pyntegrateTest
-
-    conda install -c conda-forge numpy=1.26.3 -y
-    conda install -c bioconda bedtools -y
+    conda create --name pyntegrate -c conda-forge -c bioconda \
+        python=3.10 bedtools samtools pybedtools=0.9.1 -y
+    conda activate pyntegrate
 
     unzip Pyntegrate-main.zip
     cd Pyntegrate-main
     pip install .
     ```
 
-=== "From a Git clone"
-
-    ```bash
-    git clone https://github.com/SalvaaGomez/Pyntegrate.git
-    cd Pyntegrate
-    pip install .
-    ```
-
 !!! tip "Editable install for development"
-    If you plan to modify Pyntegrate or run the [`examples/`](https://github.com/SalvaaGomez/Pyntegrate/tree/main/examples) scripts against a local checkout, install in editable mode instead: `pip install -e .`
+    If you plan to modify Pyntegrate or run the [`examples/`](https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate/tree/main/examples) scripts against a local checkout, install in editable mode instead: `pip install -e .`
 
 ## Optional dependencies
 
@@ -117,11 +92,10 @@ Follow the [HOMER installation instructions](http://homer.ucsd.edu/homer/introdu
 
 ## Verify the installation
 
-After installation, check that the package imports correctly:
+After installation, check from the terminal (with the environment activated) that the package imports correctly:
 
-```python
-import Pyntegrate
-print(Pyntegrate.__version__)
+```bash
+python -c "import Pyntegrate; print(Pyntegrate.__version__)"
 ```
 
 If the import succeeds, the installation is ready. You can also confirm that `bedtools` is available:
@@ -133,17 +107,21 @@ bedtools --version
 
 ## Troubleshooting
 
-??? failure "NumPy version conflicts"
-    If you see an error related to NumPy, install or reinstall the version used by the project:
+??? failure "Conda solver errors (`excluded by strict repo priority`, unsatisfiable packages)"
+    `conda-forge` must take priority over `bioconda`. Check the order with `conda config --show channels`; `conda-forge` should be listed first. To fix it:
 
     ```bash
-    conda install -c conda-forge numpy=1.26.3 -y
+    conda config --add channels bioconda
+    conda config --add channels conda-forge   # the last one added goes on top
     ```
 
-    Then reinstall Pyntegrate:
+    Avoid `conda install`-ing packages that `pip install -e .` already installs (e.g. `numpy`, `pandas`, `pycirclize`): `pip` will replace them with the versions pinned in `requirements.txt`, and mixing both can cause conflicts.
+
+??? failure "NumPy version conflicts"
+    If you see an error related to NumPy, reinstall the version pinned by the project from inside the activated environment:
 
     ```bash
-    pip install --force-reinstall git+https://github.com/SalvaaGomez/Pyntegrate.git
+    pip install --force-reinstall numpy==1.26.3
     ```
 
 ??? failure "`bedtools` not found"

@@ -3,7 +3,7 @@
 This guide walks through the basic Pyntegrate workflow: pointing a pipeline at your files and getting back ready-to-save `matplotlib` figures.
 
 !!! tip "Prefer runnable code?"
-    Every pattern shown here also exists as a complete, runnable script in [`examples/`](https://github.com/SalvaaGomez/Pyntegrate/tree/main/examples) — see the [Examples gallery](examples.md).
+    Every pattern shown here also exists as a complete, runnable script in [`examples/`](https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate/tree/main/examples) — see the [Examples gallery](examples.md).
 
 ## Basic Workflow
 
@@ -187,4 +187,4 @@ pipeline = PeakHeatmapPipeline(
 
 - [:material-api: Explore the API Reference](api/pipelines.md)
 - [:material-image-multiple: View Complete Examples](examples.md)
-- [:material-github: Check out the GitHub repository](https://github.com/SalvaaGomez/Pyntegrate)
+- [:material-github: Check out the GitHub repository](https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate)

@@ -1,71 +1,64 @@
-# Pyntegrate
+# Pyntegrate 🧬
 
-Pyntegrate is a library for genomic data analysis, built on the foundation of another library called [metaseq](https://github.com/daler/metaseq)  created by Ryan Dale. The update of this library is driven by the need to analyze a wider variety of data types. The types of data supported by Pyntegrate are:
+[![Python 3.9-3.12](https://img.shields.io/badge/python-3.9--3.12-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-1.  ChIP-seq
-2.  RNA-seq
-3.  DNase-seq/ATAC-seq
+A Python library for the integrative analysis and visualization of high-throughput sequencing data: ChIP-seq, RNA-seq, and DNase-seq/ATAC-seq.
 
-With these types of data accepted by the library, various functions have been created to enable the generation of graphs with them and to allow for cross-analysis.
+Pyntegrate is built on the foundation of [metaseq](https://github.com/daler/metaseq), created by Ryan Dale, and extends it to analyze and cross-compare a wider variety of data types. Each common analysis is wrapped in a one-call pipeline that returns publication-ready `matplotlib` figures. Peak calling and peak annotation optionally rely on [HOMER](http://homer.ucsd.edu/homer/).
 
-This library also utilizes software called [HOMER](http://homer.ucsd.edu/homer/).It is especially used for identifying ChIP-seq peak enrichments and distinguishing between different types of DNA regions based on intervals.
+## 🚀 Quick Start
 
+### Installation
 
-## Installation
+Requires Python 3.9-3.12 (3.10 recommended) and Git:
 
-Requires Python 3.9+ and Git.
-
-```console
+```bash
 sudo apt update
 sudo apt install -y git build-essential
 ```
 
-Install directly from GitHub:
+#### Option 1: Main environment (Conda)
 
-```console
-pip install git+https://github.com/SalvaaGomez/Pyntegrate.git
-```
+Conda installs only what pip cannot (`bedtools`, `samtools`, and `pybedtools`, which often fails to compile under pip); `pip install -e .` then installs the remaining Python dependencies at the versions pinned in `requirements.txt`:
 
-Or from a local clone, in editable mode (recommended for development or for running the `examples/` scripts):
+```bash
+# Create and activate the main environment
+conda create --name pyntegrate -c conda-forge -c bioconda \
+    python=3.10 bedtools samtools pybedtools=0.9.1 -y
+conda activate pyntegrate
 
-```console
-git clone https://github.com/SalvaaGomez/Pyntegrate.git
+# Clone and install Pyntegrate in this environment
+git clone https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate.git
 cd Pyntegrate
-python3 -m venv .venv
+pip install -e .
+```
+
+`conda-forge` must take priority over `bioconda`. If you see errors like `excluded by strict repo priority`, fix the channel order with `conda config --add channels bioconda && conda config --add channels conda-forge`.
+
+#### Option 2: One-command script (venv)
+
+From a local clone, `setup_env.sh` creates a `venv`, installs Pyntegrate in editable mode, and installs `bedtools` automatically (via `conda`, `apt-get`, or `brew`, whichever is available). This is handy for development or for running the `examples/` scripts:
+
+```bash
+git clone https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate.git
+cd Pyntegrate
+./setup_env.sh
 source .venv/bin/activate
-pip install -e .
 ```
 
-Or with Conda, installing the runtime dependencies explicitly:
+#### Optional: HOMER
 
-```console
-conda create --name pyntegrateTest python=3.10 -y
-conda activate pyntegrate_final
+HOMER is only needed for the peak-calling and peak-annotation functions. Follow the [HOMER installation instructions](http://homer.ucsd.edu/homer/introduction/install.html) and make sure `makeTagDirectory`, `findPeaks`, and `annotatePeaks.pl` are on your `PATH`.
 
-conda install -c conda-forge numpy=1.26.3 -y
-conda install -c bioconda bedtools -y
-conda install pandas -y
-conda install openpyxl -y
-conda install bioconda::samtools -y
-conda install conda-forge::pycirclize -y
+#### Verify the installation
 
-cd ~/pyntegrate
-git clone git@github.com:SalvaaGomez/Pyntegrate.git
-cd Pyntegrate/
-pip install -e .
+```bash
+python -c "import Pyntegrate; print(Pyntegrate.__version__)"
+bedtools --version
 ```
 
-For the full functionality, `bedtools` is also required:
-- Using conda: `conda install -c bioconda bedtools`
-- Without conda: `sudo apt-get install bedtools`
-
-See [docs/installation.md](./docs/installation.md) for a Conda-based walkthrough and troubleshooting.
-
-## HOMER Installation
-
-To use the HOMER-dependent functions (optional), follow the installation instructions at [this link](http://homer.ucsd.edu/homer/introduction/install.html).
-
-## Getting Started
+### Basic usage
 
 Pyntegrate accepts genomic data with the following extensions:
 
@@ -104,9 +97,22 @@ data = DEseq2Results(
 )
 ```
 
-The full set of `SeqSignalAnalysis` functions used internally by the pipelines is documented in [docs/api/seqsignalanalysis.md](./docs/api/seqsignalanalysis.md).
+## 📚 Documentation
 
-## Usage Examples
+- **[Complete Documentation](./docs/index.md)**: overview, supported data types, and the list of pipelines
+- **[Installation Guide](./docs/installation.md)**: detailed installation instructions and troubleshooting
+- **[Getting Started](./docs/getting_started.md)**: step-by-step walkthrough of the main pipelines
+- **[API Reference](./docs/api/pipelines.md)**: complete API documentation
+- **[Examples](./docs/examples.md)**: real-world usage examples, one script per figure
+
+To browse the documentation site locally:
+
+```bash
+pip install -r docs/requirements.txt
+mkdocs serve   # http://127.0.0.1:8000
+```
+
+## 🖼️ Usage Examples
 
 The [`examples/`](./examples) directory contains runnable, self-contained scripts reproducing a FACT (SSRP1/SUPT16H) knockdown ChIP-seq/ATAC-seq/RNA-seq analysis, one script per figure (or figure panel), each with a configuration section at the top and a docstring explaining the workflow. See [`docs/examples.md`](./docs/examples.md) for the full gallery and a quick-reference table.
 
@@ -126,4 +132,42 @@ Sample output from these pipelines:
   <img src="./docs/images_examples/fig13-circplot-ssrp1.png" alt="Circos plot" height="320">
 </p>
 
-More output samples for every example are in [`docs/images_examples/`](./docs/images_examples), and the full walkthrough for each figure is in [`docs/examples.md`](./docs/examples.md).
+More output samples for every example are in [`docs/images_examples/`](./docs/images_examples).
+
+## 📋 Requirements
+
+Command-line tools (not installable through pip):
+
+| Tool | Required for |
+| ---- | ------------ |
+| `bedtools` | Interval operations (required for full functionality) |
+| `samtools` | BAM-based workflows |
+| HOMER *(optional)* | Peak calling and peak annotation |
+
+Python dependencies, installed automatically by pip:
+
+| Package | Version pinned in `requirements.txt` |
+| ------- | ------------------------------------ |
+| adjustText | `==1.1.1` |
+| biopython | `==1.83` |
+| bx-python | `==0.10.0` |
+| Cython | `==3.0.8` |
+| deeptools | any |
+| fisher | `==0.1.14` |
+| gffutils | `==0.12` |
+| matplotlib | `==3.8.2` |
+| numpy | `==1.26.3` |
+| openpyxl | any |
+| pandas | `==2.1.4` |
+| pybedtools | `==0.9.1` |
+| pyBigWig | `==0.3.22` |
+| pycirclize | `==1.10.1` |
+| PyYAML | `==6.0.1` |
+| pysam | `==0.22.0` |
+| scikit-learn | `==1.4.1.post1` |
+| scipy | `==1.11.4` |
+| seaborn | `==0.13.2` |
+
+## 📄 License
+
+This project is licensed under the **MIT License**. See the [LICENSE.txt](LICENSE.txt) file for details.

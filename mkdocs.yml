@@ -1,10 +1,9 @@
 site_name: Pyntegrate
 site_description: Integrative analysis of high-throughput sequencing data
-site_author: Gerardo Fructuoso
-site_url: https://github.com/SalvaaGomez/Pyntegrate
+site_url: https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate
 use_directory_urls: False
-repo_name: SalvaaGomez/Pyntegrate
-repo_url: https://github.com/SalvaaGomez/Pyntegrate
+repo_name: Molecular-Oncology-Group-UFV/Pyntegrate
+repo_url: https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate
 
 theme:
   name: material

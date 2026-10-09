@@ -1,6 +1,6 @@
 # Examples
 
-This gallery walks through the runnable example scripts in [`examples/`](https://github.com/SalvaaGomez/Pyntegrate/tree/main/examples). Each script reproduces one figure (or figure panel) from a FACT (SSRP1/SUPT16H) knockdown ChIP-seq/ATAC-seq/RNA-seq analysis, wrapping one Pyntegrate pipeline end-to-end — from raw signal/expression files to a saved figure. Every script follows the same shape: a **Configuration** section at the top, a docstring explaining the workflow, one or more pipeline calls, and an `OUTPUT_PATH` (saved to `outputs/figs/` at 300 dpi).
+This gallery walks through the runnable example scripts in [`examples/`](https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate/tree/main/examples). Each script reproduces one figure (or figure panel) from a FACT (SSRP1/SUPT16H) knockdown ChIP-seq/ATAC-seq/RNA-seq analysis, wrapping one Pyntegrate pipeline end-to-end — from raw signal/expression files to a saved figure. Every script follows the same shape: a **Configuration** section at the top, a docstring explaining the workflow, one or more pipeline calls, and an `OUTPUT_PATH` (saved to `outputs/figs/` at 300 dpi).
 
 ## Figure 1 — Meta-gene Profile and Cross-modality Correlations
 
@@ -12,35 +12,35 @@ This gallery walks through the runnable example scripts in [`examples/`](https:/
 
     ![Meta-gene average-signal profile (SSRP1 vs SUPT16H)](images_examples/fig1a-genescale-profile.png)
 
-    **Script:** [Fig 1A.py](https://github.com/SalvaaGomez/Pyntegrate/tree/main/examples/Fig%201A.py)
+    **Script:** [Fig 1A.py](https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate/tree/main/examples/Fig%201A.py)
 
 === "1B — ChIP correlation"
     Hexbin density scatter correlating SSRP1 vs. SUPT16H ChIP log2 fold-change at TSS windows classified as FACT-high in at least one component.
 
     ![Hexbin density scatter: SSRP1 vs SUPT16H ChIP log2FC](images_examples/fig1b-chip-correlation.png)
 
-    **Script:** [Fig 1B.py](https://github.com/SalvaaGomez/Pyntegrate/tree/main/examples/Fig%201B.py)
+    **Script:** [Fig 1B.py](https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate/tree/main/examples/Fig%201B.py)
 
 === "1C — RNA knockdown correlation"
     Hexbin density scatter correlating RNA-seq log2 fold-change between the SSRP1 and SUPT16H knockdowns, for genes significantly changed in at least one condition.
 
     ![Hexbin density scatter: SSRP1 KD vs SUPT16H KD RNA log2FC](images_examples/fig1c-rna-knockdown-correlation.png)
 
-    **Script:** [Fig 1C.py](https://github.com/SalvaaGomez/Pyntegrate/tree/main/examples/Fig%201C.py)
+    **Script:** [Fig 1C.py](https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate/tree/main/examples/Fig%201C.py)
 
 === "1D — ATAC knockdown correlation"
     Hexbin density scatter correlating ATAC-seq log2 fold-change between the SUPT16H and SSRP1 knockdowns, for peaks significantly differential in at least one condition.
 
     ![Hexbin density scatter: SUPT16H KD vs SSRP1 KD ATAC log2FC](images_examples/fig1d-atac-knockdown-correlation.png)
 
-    **Script:** [Fig 1D.py](https://github.com/SalvaaGomez/Pyntegrate/tree/main/examples/Fig%201D.py)
+    **Script:** [Fig 1D.py](https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate/tree/main/examples/Fig%201D.py)
 
 === "1E — ChIP IP vs INPUT profile"
     ChIP-seq IP − INPUT average profile around TSS on an independent mouse (mm10) dataset.
 
     ![ChIP-seq IP vs INPUT average profile](images_examples/fig1e-peak-profile.png)
 
-    **Script:** [Fig 1E.py](https://github.com/SalvaaGomez/Pyntegrate/tree/main/examples/Fig%201E.py)
+    **Script:** [Fig 1E.py](https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate/tree/main/examples/Fig%201E.py)
 
 ---
 
@@ -55,7 +55,7 @@ This gallery walks through the runnable example scripts in [`examples/`](https:/
 === "2B — SUPT16H"
     ![Integrated ChIP-seq (SUPT16H) + RNA heatmap](images_examples/fig2b-integrated-heatmap-rna-supt16h.png){: style="max-height:600px" }
 
-**Script:** [Fig 2.py](https://github.com/SalvaaGomez/Pyntegrate/tree/main/examples/Fig%202.py)
+**Script:** [Fig 2.py](https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate/tree/main/examples/Fig%202.py)
 
 ---
 
@@ -70,7 +70,7 @@ This gallery walks through the runnable example scripts in [`examples/`](https:/
 === "3B — SUPT16H RNA"
     ![Decile boxplot: ChIP deciles vs SUPT16H RNA log2FC](images_examples/fig3b-decile-rna-supt16h.png)
 
-**Script:** [Fig 3.py](https://github.com/SalvaaGomez/Pyntegrate/tree/main/examples/Fig%203.py)
+**Script:** [Fig 3.py](https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate/tree/main/examples/Fig%203.py)
 
 ---
 
@@ -91,7 +91,7 @@ This gallery walks through the runnable example scripts in [`examples/`](https:/
 === "4D — SUPT16H ChIP/ATAC overlay"
     ![SUPT16H ChIP-seq vs ATAC-seq dual-axis overlay profile](images_examples/fig4d-overlay-profile-supt16h.png)
 
-**Script:** [Fig 4AB.py](https://github.com/SalvaaGomez/Pyntegrate/tree/main/examples/Fig%204AB.py) (4A/4B) · [Fig 4CD.py](https://github.com/SalvaaGomez/Pyntegrate/tree/main/examples/Fig%204CD.py) (4C/4D)
+**Script:** [Fig 4AB.py](https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate/tree/main/examples/Fig%204AB.py) (4A/4B) · [Fig 4CD.py](https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate/tree/main/examples/Fig%204CD.py) (4C/4D)
 
 ---
 
@@ -106,7 +106,7 @@ This gallery walks through the runnable example scripts in [`examples/`](https:/
 === "5B — SUPT16H"
     ![Integrated ChIP-seq (SUPT16H) + RNA heatmap, FACT-filtered](images_examples/fig5b-integrated-heatmap-rna-supt16h-fact.png){: style="max-height:600px" }
 
-**Script:** [Fig 5.py](https://github.com/SalvaaGomez/Pyntegrate/tree/main/examples/Fig%205.py)
+**Script:** [Fig 5.py](https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate/tree/main/examples/Fig%205.py)
 
 ---
 
@@ -117,7 +117,7 @@ This gallery walks through the runnable example scripts in [`examples/`](https:/
 
     ![RNA log2FC violin panels with significance overlay](images_examples/fig6-rna-violin.png)
 
-**Script:** [Fig 6.py](https://github.com/SalvaaGomez/Pyntegrate/tree/main/examples/Fig%206.py)
+**Script:** [Fig 6.py](https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate/tree/main/examples/Fig%206.py)
 
 ---
 
@@ -138,7 +138,7 @@ This gallery walks through the runnable example scripts in [`examples/`](https:/
 === "7D — SUPT16H FACT low"
     ![Decile boxplot: SUPT16H FACT low](images_examples/fig7d-decile-atac-supt16h-low.png)
 
-**Script:** [Fig 7.py](https://github.com/SalvaaGomez/Pyntegrate/tree/main/examples/Fig%207.py)
+**Script:** [Fig 7.py](https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate/tree/main/examples/Fig%207.py)
 
 ---
 
@@ -153,7 +153,7 @@ This gallery walks through the runnable example scripts in [`examples/`](https:/
 === "8B — SUPT16H"
     ![SUPT16H ChIP-seq signal split by ATAC-seq status, FACT-filtered](images_examples/fig8b-integrated-heatmap-atac-supt16h-fact.png)
 
-**Script:** [Fig 8.py](https://github.com/SalvaaGomez/Pyntegrate/tree/main/examples/Fig%208.py)
+**Script:** [Fig 8.py](https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate/tree/main/examples/Fig%208.py)
 
 ---
 
@@ -171,7 +171,7 @@ This gallery walks through the runnable example scripts in [`examples/`](https:/
 === "9C — SUPT16H"
     ![ATAC-seq category heatmap, SUPT16H, sorted by mean](images_examples/fig9c-category-heatmap-supt16h-atac.png){: style="max-height:600px" }
 
-**Script:** [Fig 9.py](https://github.com/SalvaaGomez/Pyntegrate/tree/main/examples/Fig%209.py)
+**Script:** [Fig 9.py](https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate/tree/main/examples/Fig%209.py)
 
 ---
 
@@ -186,7 +186,7 @@ This gallery walks through the runnable example scripts in [`examples/`](https:/
 === "10B — SUPT16H ChIP volcano"
     ![Volcano plot: SUPT16H ChIP differential binding](images_examples/fig10b-volcano-supt16h-chip.png)
 
-**Script:** [Fig 10.py](https://github.com/SalvaaGomez/Pyntegrate/tree/main/examples/Fig%2010.py)
+**Script:** [Fig 10.py](https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate/tree/main/examples/Fig%2010.py)
 
 ---
 
@@ -201,7 +201,7 @@ This gallery walks through the runnable example scripts in [`examples/`](https:/
 === "12 — SUPT16H"
     ![Circos plot for SUPT16H condition, -log10(padj)](images_examples/fig12-circplot-supt16h-padj.png)
 
-**Script:** [Fig 11-12.py](https://github.com/SalvaaGomez/Pyntegrate/tree/main/examples/Fig%2011-12.py)
+**Script:** [Fig 11-12.py](https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate/tree/main/examples/Fig%2011-12.py)
 
 ---
 
@@ -216,7 +216,7 @@ This gallery walks through the runnable example scripts in [`examples/`](https:/
 === "14 — SUPT16H"
     ![Circos plot for SUPT16H condition](images_examples/fig14-circplot-supt16h.png)
 
-**Script:** [Fig 13-14.py](https://github.com/SalvaaGomez/Pyntegrate/tree/main/examples/Fig%2013-14.py)
+**Script:** [Fig 13-14.py](https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate/tree/main/examples/Fig%2013-14.py)
 
 ---
 
@@ -237,7 +237,7 @@ This gallery walks through the runnable example scripts in [`examples/`](https:/
 === "S1D — SUPT16H quadrant profile"
     ![ChIP-seq profile by ATAC/RNA quadrant, SUPT16H](images_examples/figs1d-quadrant-profile-supt16h.png)
 
-**Script:** [Fig S1AB.py](https://github.com/SalvaaGomez/Pyntegrate/tree/main/examples/Fig%20S1AB.py) (S1A/S1B) · [Fig S1CD.py](https://github.com/SalvaaGomez/Pyntegrate/tree/main/examples/Fig%20S1CD.py) (S1C/S1D)
+**Script:** [Fig S1AB.py](https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate/tree/main/examples/Fig%20S1AB.py) (S1A/S1B) · [Fig S1CD.py](https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate/tree/main/examples/Fig%20S1CD.py) (S1C/S1D)
 
 ---
 
@@ -258,18 +258,18 @@ This gallery walks through the runnable example scripts in [`examples/`](https:/
 === "S2D — SUPT16H FACT low"
     ![SUPT16H ChIP/ATAC overlay, FACT low](images_examples/figs2d-overlay-atac-chip-supt16h-low.png)
 
-**Script:** [Fig S2.py](https://github.com/SalvaaGomez/Pyntegrate/tree/main/examples/Fig%20S2.py)
+**Script:** [Fig S2.py](https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate/tree/main/examples/Fig%20S2.py)
 
 ---
 
 ## Extra — Multi-signal Comparison (3-way Scatter)
 
 !!! example "Pipeline: `MultiSignalComparisonPipeline`"
-    Compares log2 fold-change values across ChIP-seq, ATAC-seq and RNA-seq from a single expression-results CSV and produces a 1×3 panel of 2D scatter plots (RNA vs. ChIP, RNA vs. ATAC, ChIP vs. ATAC). Kept in [`examples/extra/`](https://github.com/SalvaaGomez/Pyntegrate/tree/main/examples/extra) as a standalone reference, saved by default; set `OUTPUT_PATH` to `None` to skip saving.
+    Compares log2 fold-change values across ChIP-seq, ATAC-seq and RNA-seq from a single expression-results CSV and produces a 1×3 panel of 2D scatter plots (RNA vs. ChIP, RNA vs. ATAC, ChIP vs. ATAC). Kept in [`examples/extra/`](https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate/tree/main/examples/extra) as a standalone reference, saved by default; set `OUTPUT_PATH` to `None` to skip saving.
 
     ![Multi-signal scatter comparison: RNA vs ChIP vs ATAC log2FC](images_examples/fig-extra-multisignal-comparison.png)
 
-**Script:** [extra/multisignal_comparison.py](https://github.com/SalvaaGomez/Pyntegrate/tree/main/examples/extra/multisignal_comparison.py)
+**Script:** [extra/multisignal_comparison.py](https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate/tree/main/examples/extra/multisignal_comparison.py)
 
 ---
 
@@ -346,4 +346,4 @@ GENOME = "mm10"  # or "hg19"
     4. Check that your CSV/TSV files have the columns referenced by the pipeline
     5. For more detail, inspect the full error traceback
 
-For additional help, visit [GitHub Issues](https://github.com/SalvaaGomez/Pyntegrate/issues).
+For additional help, visit [GitHub Issues](https://github.com/Molecular-Oncology-Group-UFV/Pyntegrate/issues).
