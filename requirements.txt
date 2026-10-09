@@ -15,4 +15,5 @@ adjustText==1.1.1
 pyBigWig==0.3.22
 seaborn==0.13.2
 deeptools
+openpyxl
 pycirclize==1.10.1

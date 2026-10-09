@@ -17,7 +17,7 @@ setup(
         license="MIT",
         install_requires=requirements,
         packages=find_packages(),
-        python_requires='>=3.9',
+        python_requires='>=3.9,<3.13',
         classifiers=[
             'Intended Audience :: Science/Research',
             'Intended Audience :: Developers',
