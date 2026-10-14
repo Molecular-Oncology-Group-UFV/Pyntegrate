@@ -1,0 +1,7 @@
+# Dependencies to build/serve the Pyntegrate documentation site (mkdocs.yml).
+# Install with: pip install -r docs/requirements.txt
+# Then run: mkdocs serve   (live preview)  or  mkdocs build   (static site/ output)
+mkdocs>=1.6
+mkdocs-material>=9.7
+mkdocstrings[python]>=1.0
+pymdown-extensions>=11.0
