@@ -99,18 +99,11 @@ data = DEseq2Results(
 
 ## 📚 Documentation
 
-- **[Complete Documentation](./docs/index.md)**: overview, supported data types, and the list of pipelines
-- **[Installation Guide](./docs/installation.md)**: detailed installation instructions and troubleshooting
-- **[Getting Started](./docs/getting_started.md)**: step-by-step walkthrough of the main pipelines
-- **[API Reference](./docs/api/pipelines.md)**: complete API documentation
-- **[Examples](./docs/examples.md)**: real-world usage examples, one script per figure
-
-To browse the documentation site locally:
-
-```bash
-pip install -r docs/requirements.txt
-mkdocs serve   # http://127.0.0.1:8000
-```
+- **[Complete Documentation](https://molecular-oncology-group-ufv.github.io/Pyntegrate/)**: overview, supported data types, and the list of pipelines
+- **[Installation Guide](https://molecular-oncology-group-ufv.github.io/Pyntegrate/installation.html)**: detailed installation instructions and troubleshooting
+- **[Getting Started](https://molecular-oncology-group-ufv.github.io/Pyntegrate/getting_started.html)**: step-by-step walkthrough of the main pipelines
+- **[API Reference](https://molecular-oncology-group-ufv.github.io/Pyntegrate/api/pipelines.html)**: complete API documentation
+- **[Examples](https://molecular-oncology-group-ufv.github.io/Pyntegrate/examples.html)**: real-world usage examples, one script per figure
 
 ## 🖼️ Usage Examples
 
